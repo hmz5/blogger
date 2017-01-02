@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="//H_MZ.me">
+  <title>vue2.0 router 切换动画 | H_MZ的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对于动画vue2.0 提供了 transition 的封装组件，在下列情形中，可以给任何元素和组件添加 entering/leaving 过渡
+
+条件渲染 （使用 v-if）条件展示 （使用 v-show）动态组件组件根节点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue2.0 router 切换动画">
+<meta property="og:url" content="//H_MZ.me/posts/uncategorized/2016-12-16-vue2.0 router切换动画.html">
+<meta property="og:site_name" content="H_MZ的博客">
+<meta property="og:description" content="对于动画vue2.0 提供了 transition 的封装组件，在下列情形中，可以给任何元素和组件添加 entering/leaving 过渡
+
+条件渲染 （使用 v-if）条件展示 （使用 v-show）动态组件组件根节点">
+<meta property="og:updated_time" content="2017-01-02T14:37:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue2.0 router 切换动画">
+<meta name="twitter:description" content="对于动画vue2.0 提供了 transition 的封装组件，在下列情形中，可以给任何元素和组件添加 entering/leaving 过渡
+
+条件渲染 （使用 v-if）条件展示 （使用 v-show）动态组件组件根节点">
+  
+    <link rel="alternative" href="/atom.xml" title="H_MZ的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://ohy4bt9w4.bkt.clouddn.com/image/avatar/heminzhi.jpeg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">H_MZ</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">专注前端</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/hmz5" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="mail" target="_blank" href="mailto:541058460@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">H_MZ</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://ohy4bt9w4.bkt.clouddn.com/image/avatar/heminzhi.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">H_MZ</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">专注前端</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hmz5" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="mail" target="_blank" href="mailto:541058460@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-vue2.0 router切换动画" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue2.0 router 切换动画
+    </h1>
+  
+
+        <a href="/posts/uncategorized/2016-12-16-vue2.0 router切换动画.html" class="archive-article-date">
+  	<time datetime="2016-12-16T15:45:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-16</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对于动画vue2.0 提供了 transition 的封装组件，在下列情形中，可以给任何元素和组件添加 entering/leaving 过渡</p>
+<blockquote>
+<p>条件渲染 （使用 v-if）<br>条件展示 （使用 v-show）<br>动态组件<br>组件根节点</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="app-vue"><a href="#app-vue" class="headerlink" title="app.vue"></a>app.vue</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">    &lt;div id="app" class="g-body"&gt;</div><div class="line">        &lt;div class="g-main"&gt;</div><div class="line">            &lt;transition :name="viewAnimate"&gt;</div><div class="line">                &lt;keep-alive&gt;</div><div class="line">                    &lt;router-view&gt;&lt;/router-view&gt;</div><div class="line">                &lt;/keep-alive&gt;</div><div class="line">            &lt;/transition&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line">&lt;script&gt;</div><div class="line">import &#123;</div><div class="line">    mapGetters,</div><div class="line">    mapActions</div><div class="line">&#125; from 'vuex';</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">    name: 'app',</div><div class="line">    data() &#123;</div><div class="line">        return &#123;</div><div class="line">            isLoading: false,</div><div class="line">            viewAnimate: ''</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    computed: mapGetters(&#123;</div><div class="line">        direction: 'getDirection'</div><div class="line">    &#125;),</div><div class="line">    watch: &#123;</div><div class="line">        '$route': function(val, oldVal) &#123;</div><div class="line">            console.log('------------监听到路由变化---------',this.direction);</div><div class="line">            if (this.direction === 'forward') &#123;</div><div class="line">                this.viewAnimate = 'slide-in';</div><div class="line">            &#125; else &#123;</div><div class="line">                this.viewAnimate = 'slide-out';</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;style lang="sass"&gt;</div><div class="line">	html,</div><div class="line">	body &#123;</div><div class="line">	    height: 100%;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.g-body &#123;</div><div class="line">	    height: 100%;</div><div class="line">	    position: relative;</div><div class="line">	    overflow: hidden;</div><div class="line">	    .g-main &#123;</div><div class="line">	        height: 100%;</div><div class="line">	        .view &#123;</div><div class="line">	            position: absolute;</div><div class="line">	            top: 0;</div><div class="line">	            bottom: 0;</div><div class="line">	            left: 0;</div><div class="line">	            right: 0;</div><div class="line">	            width: 100%;</div><div class="line">	            background: #fff;</div><div class="line">	        &#125;</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	/**</div><div class="line">	* vue-router transition</div><div class="line">	*/</div><div class="line"></div><div class="line">	.slide-in-enter-active &#123;</div><div class="line">	    z-index: 2;</div><div class="line">	    visibility: visible;</div><div class="line">	    -webkit-animation-duration: 0.4s;</div><div class="line">	    animation-duration: 0.4s;</div><div class="line">	    -webkit-animation-name: slide-in-enter;</div><div class="line">	    animation-name: slide-in-enter;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.slide-in-leave-active &#123;</div><div class="line">	    z-index: 1;</div><div class="line">	    visibility: visible;</div><div class="line">	    -webkit-animation-duration: 0.4s;</div><div class="line">	    animation-duration: 0.4s;</div><div class="line">	    -webkit-animation-name: slide-in-leave;</div><div class="line">	    animation-name: slide-in-leave;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.slide-out-enter-active &#123;</div><div class="line">	    z-index: 1;</div><div class="line">	    -webkit-animation-duration: 0.4s;</div><div class="line">	    animation-duration: 0.4s;</div><div class="line">	    -webkit-animation-name: slide-out-enter;</div><div class="line">	    animation-name: slide-out-enter;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.slide-out-leave-active &#123;</div><div class="line">	    z-index: 2;</div><div class="line">	    -webkit-animation-duration: 0.4s;</div><div class="line">	    animation-duration: 0.4s;</div><div class="line">	    -webkit-animation-name: slide-out-leave;</div><div class="line">	    animation-name: slide-out-leave;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.slide-in-enter &#123;</div><div class="line">	    visibility: hidden;</div><div class="line">	    -webkit-transform: translate3d(100%, 0, 0);</div><div class="line">	    transform: translate3d(100%, 0, 0);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	.slide-out-enter &#123;</div><div class="line">	    visibility: hidden;</div><div class="line">	    -webkit-transform: translate3d(-100%, 0, 0);</div><div class="line">	    transform: translate3d(-100%, 0, 0);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@-webkit-keyframes slide-in-enter &#123;</div><div class="line">	    from &#123;</div><div class="line">	        -webkit-transform: translate3d(100%, 0, 0);</div><div class="line">	        transform: translate3d(100%, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	    to &#123;</div><div class="line">	        -webkit-transform: translate3d(0, 0, 0);</div><div class="line">	        transform: translate3d(0, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@keyframes slide-in-enter &#123;</div><div class="line">	    from &#123;</div><div class="line">	        -webkit-transform: translate3d(100%, 0, 0);</div><div class="line">	        transform: translate3d(100%, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	    to &#123;</div><div class="line">	        -webkit-transform: translate3d(0, 0, 0);</div><div class="line">	        transform: translate3d(0, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@-webkit-keyframes slide-in-leave &#123;</div><div class="line">	    from &#123;</div><div class="line">	        -webkit-transform: translate3d(0, 0, 0);</div><div class="line">	        transform: translate3d(0, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	    to &#123;</div><div class="line">	        -webkit-transform: translate3d(-33%, 0, 0);</div><div class="line">	        transform: translate3d(-33%, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@keyframes slide-in-leave &#123;</div><div class="line">	    from &#123;</div><div class="line">	        -webkit-transform: translate3d(0, 0, 0);</div><div class="line">	        transform: translate3d(0, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	    to &#123;</div><div class="line">	        -webkit-transform: translate3d(-33%, 0, 0);</div><div class="line">	        transform: translate3d(-33%, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@-webkit-keyframes slide-out-enter &#123;</div><div class="line">	    from &#123;</div><div class="line">	        -webkit-transform: translate3d(-33%, 0, 0);</div><div class="line">	        transform: translate3d(-33%, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	    to &#123;</div><div class="line">	        -webkit-transform: translate3d(0, 0, 0);</div><div class="line">	        transform: translate3d(0, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@keyframes slide-out-enter &#123;</div><div class="line">	    from &#123;</div><div class="line">	        -webkit-transform: translate3d(-33%, 0, 0);</div><div class="line">	        transform: translate3d(-33%, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	    to &#123;</div><div class="line">	        -webkit-transform: translate3d(0, 0, 0);</div><div class="line">	        transform: translate3d(0, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@-webkit-keyframes slide-out-leave &#123;</div><div class="line">	    from &#123;</div><div class="line">	        -webkit-transform: translate3d(0, 0, 0);</div><div class="line">	        transform: translate3d(0, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	    to &#123;</div><div class="line">	        -webkit-transform: translate3d(100%, 0, 0);</div><div class="line">	        transform: translate3d(100%, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@keyframes slide-out-leave &#123;</div><div class="line">	    from &#123;</div><div class="line">	        -webkit-transform: translate3d(0, 0, 0);</div><div class="line">	        transform: translate3d(0, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	    to &#123;</div><div class="line">	        -webkit-transform: translate3d(100%, 0, 0);</div><div class="line">	        transform: translate3d(100%, 0, 0);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<h4 id="indexRouter-js"><a href="#indexRouter-js" class="headerlink" title="indexRouter.js"></a>indexRouter.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/***</span></div><div class="line"> * 全局钩子函数</div><div class="line"> ***/</div><div class="line"></div><div class="line"><span class="comment">// 视图切换动画逻辑</span></div><div class="line"><span class="keyword">const</span> commit = IndexStore.commit || IndexStore.dispatch;</div><div class="line"></div><div class="line">router.afterEach(<span class="function"><span class="params">route</span> =&gt;</span> &#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> direction = <span class="string">'forward'</span>;</div><div class="line">        commit(<span class="string">'SET_DIRECTION'</span>, &#123; direction &#125;);</div><div class="line">    &#125;, <span class="number">50</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue2-0-router-动画/">vue2.0 router 动画</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://H_MZ.me/posts/uncategorized/2016-12-16-vue2.0 router切换动画.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/posts/uncategorized/2017-01-02-vue2.0下拉刷新和上拉加载组件.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          vue2.0下拉刷新和上拉加载组件
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="vue2.0 router切换动画" data-title="vue2.0 router 切换动画" data-url="//H_MZ.me/posts/uncategorized/2016-12-16-vue2.0 router切换动画.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 H_MZ
+    	</div>
+      	<div class="footer-right">
+      		
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0.js"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vue2.0 router 动画</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vue2.0 下拉刷新 上拉加载</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">刚刚开始写博客&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
